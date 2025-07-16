@@ -3,59 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My AI Projects</title>
+  <title>👾 SPACE RAG INVADERS 👾</title>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      font-family: 'Share Tech Mono', monospace;
+      background-color: #000;
+      color: #fff;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 5px #39ff14, 0 0 2px #fff;
     }
 
     header {
-      background-color: #111;
-      color: white;
-      padding: 1rem 2rem;
+      background: linear-gradient(90deg, #39ff14 0%, #00ffc3 100%);
+      color: #000;
       text-align: center;
+      padding: 1.5rem 0 1rem;
+      border-bottom: 4px solid #fff;
+      text-shadow: 0 0 10px #fff, 0 0 6px #39ff14;
     }
 
     h1 {
+      font-size: 2.2rem;
       margin: 0;
-      font-size: 2rem;
+      letter-spacing: 5px;
+      font-family: inherit;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 0 0 15px #00ffae, 0 0 8px #39ff14;
     }
 
     section {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
+      padding: 2.5rem 1.5rem 2rem;
+      max-width: 900px;
+      margin: 2rem auto;
+      border: 2px solid #39ff14;
+      border-radius: 8px;
+      box-shadow: 0 0 24px #39ff1450, 0 0 12px #fff2;
+      background: #111c;
+      position: relative;
+    }
+
+    section:before,
+    section:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 10px; right: 10px;
+      height: 4px;
+      background: linear-gradient(90deg, #39ff14 50%, #fff 100%);
+      border-radius: 50%;
+    }
+    section:before {top: -8px;}
+    section:after {bottom: -8px;}
+
+    h2 {
+      color: #39ff14;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      margin-top: 0;
+      letter-spacing: 3px;
+      margin-bottom: 0.4rem;
+      text-shadow: 0 0 4px #39ff1477, 0 0 2px #fff;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1.3rem;
+      opacity: 0.92;
+    }
+
+    .status-bar {
+      background: #222;
+      border: 2px dashed #39ff14;
+      color: #39ff14;
+      padding: 0.6rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      text-shadow: 0 0 4px #39ff14;
     }
 
     iframe {
       width: 100%;
       height: 800px;
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border: 2px solid #39ff14;
+      background: #000;
+      box-shadow: 0 0 24px #39ff1411, 0 0 10px #39ff1466 inset;
       margin-top: 1rem;
+      border-radius: 8px;
     }
 
     @media (max-width: 768px) {
-      iframe {
-        height: 600px;
-      }
+      section { padding: 1rem; }
+      iframe { height: 500px; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Welcome to My AI Projects</h1>
+    <h1>👾 SPACE RAG INVADERS 👾</h1>
   </header>
 
   <section>
-    <h2>🎯 RAG Demo</h2>
-    <p>Try out my Retrieval-Augmented Generation app below. It's hosted on Render and integrated right into this site.</p>
-
+    <div class="status-bar">
+      <span>SCORE: <span style="color:#fff;">000000</span></span>
+      <span>LIVES: <span style="color:#fff;">3</span></span>
+      <span>LEVEL: <span style="color:#fff;">AI</span></span>
+    </div>
+    <h2>RAG Demo Console</h2>
+    <p>
+      💫 <b>Mission:</b> Try out my <b>Retrieval-Augmented Generation</b> AI!<br>
+      It's live on Render.<br>
+      <br>
+      <span style="letter-spacing:2px; color:#39ff14;">INSERT COIN TO START</span>
+    </p>
     <iframe src="https://rag-ade.onrender.com"></iframe>
   </section>
 
