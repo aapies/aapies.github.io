@@ -8,135 +8,120 @@
   <style>
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Share Tech Mono', monospace;
-      background-color: #000;
+      background: #000;
       color: #fff;
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 2px #fff4;
       min-height: 100vh;
+      letter-spacing: 1.5px;
     }
-
-    .block-title {
-      text-align: center;
-      margin: 2.5rem 0 1.8rem 0;
-      font-size: 2.7rem;
-      line-height: 1.05;
-      letter-spacing: 3px;
-      font-family: 'Share Tech Mono', monospace;
-      font-weight: bold;
+    /* Space invader vertical title */
+    .adi-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 48px 0 18px 0;
+      font-size: 2.6rem;
+      line-height: 1.1;
+      font-family: inherit;
       text-transform: uppercase;
       user-select: none;
     }
-    .block-title .yellow {
-      color: #ffc800;
-      text-shadow: 0 0 6px #ffc80055, 0 0 2px #fff;
-      /* Optional: blocky neon effect */
+    .adi-table {
+      border-spacing: 0;
+      line-height: 1.1;
     }
-    .block-title .white {
+    .adi-table td {
+      padding: 0 0.25em;
+      font-size: 2.4rem;
+      font-family: inherit;
+    }
+    .adi-table .left {
+      color: #ffff04;
+      font-weight: bold;
+      padding-right: 0.1em;
+      text-shadow: 0 0 8px #ffff04cc, 0 0 2px #fff2;
+    }
+    .adi-table .right {
       color: #fff;
-      text-shadow: 0 0 8px #fff8, 0 0 2px #ffc80044;
+      font-weight: normal;
+      padding-left: 0.05em;
+      text-shadow: 0 0 7px #fff8, 0 0 2px #ffff0440;
     }
 
-    section {
-      padding: 2.2rem 1.2rem 2rem;
-      max-width: 900px;
-      margin: 0 auto 1.5rem auto;
-      border: 2.5px solid #ffc800;
-      border-radius: 12px;
-      box-shadow: 0 0 34px #ffc80030, 0 0 9px #fff1;
-      background: #12120c;
-      position: relative;
-    }
-
-    h2 {
-      color: #ffc800;
-      text-transform: uppercase;
-      font-size: 1.2rem;
+    h1 {
+      color: #ffff04;
+      text-align: center;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.8em;
       margin-top: 0;
-      letter-spacing: 3px;
-      margin-bottom: 0.9rem;
-      text-shadow: 0 0 6px #ffc80077, 0 0 2px #fff;
+      text-shadow: 0 0 6px #ffff048a;
+    }
+    .intro {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 2.1em auto;
+      color: #fff;
+      font-size: 1.14rem;
+      opacity: 0.92;
     }
 
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 1.3rem;
-      opacity: 0.94;
-    }
-
-    .arcade-window {
-      background: #12120c;
-      border: 4px solid #ffc800;
-      border-radius: 18px 18px 24px 24px/16px 16px 28px 28px;
-      box-shadow:
-        0 0 14px #ffc80070,
-        0 6px 36px #000a inset,
-        0 0 1px #fff7;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      position: relative;
+    .iframe-holder {
+      width: 94%;
+      max-width: 850px;
+      margin: 1.8em auto 0 auto;
+      border-radius: 14px;
       overflow: hidden;
-      padding-top: 0;
-      background-image:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,0,0.05) 0px, 
-          rgba(255,255,0,0.025) 2px,
-          transparent 2px, 
-          transparent 8px
-        );
+      box-shadow: 0 0 26px #ffff0430, 0 0 2px #ffff04c0;
+      border: 2.5px solid #ffff04;
+      background: #0a0a0a;
+      transition: box-shadow 0.35s;
     }
-    /* Remove console bar */
-
-    .arcade-screen {
-      margin: 0;
+    .iframe-holder:hover {
+      box-shadow: 0 0 36px #ffff04ad, 0 0 12px #fff2;
+    }
+    iframe {
       width: 100%;
-      height: 750px;
-      border: 0;
-      border-radius: 2px 2px 18px 18px/4px 4px 16px 16px;
-      background: #020;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 0, 0.07) 0 2px,
-        transparent 2px 12px
-      );
-      box-shadow:
-        0 0 30px #ffc80033 inset,
-        0 0 50px #fff1 inset;
-      filter: saturate(0.95) contrast(1.18) brightness(0.98);
-      position: relative;
-      z-index: 1;
+      height: 600px;
+      border: none;
+      background: #000;
       display: block;
     }
-
     @media (max-width: 768px) {
-      section { padding: 1rem; }
-      .arcade-screen { height: 400px; }
-      .block-title { font-size: 1.5rem; }
+      .adi-title { font-size: 1.6rem;}
+      .adi-table .left, .adi-table .right { font-size: 1.2rem;}
+      .iframe-holder { width: 99%; border-radius: 8px;}
+      iframe { height: 350px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="block-title">
-    <span class="yellow">A</span><span class="white">msterdam</span><br>
-    <span class="yellow">D</span><span class="white">ance</span><br>
-    <span class="yellow">I</span><span class="white">ntelligence</span>
+  <div class="adi-title">
+    <table class="adi-table">
+      <tr>
+        <td class="left">A</td><td class="right">msterdam</td>
+      </tr>
+      <tr>
+        <td class="left">D</td><td class="right">ance</td>
+      </tr>
+      <tr>
+        <td class="left">I</td><td class="right">ntelligence</td>
+      </tr>
+    </table>
   </div>
 
-  <section>
-    <h2>RAG Demo Console</h2>
-    <p>
-      <b>Mission:</b> Try out my Retrieval-Augmented Generation AI!<br>
-      It's live on Render.<br>
-      <span style="letter-spacing:2px; color:#ffc800;">INSERT COIN TO START</span>
-    </p>
+  <h1>AI search engine for ADE 2024 (RAG)</h1>
+  <div class="intro">
+      Welcome to Amsterdam Dance Intelligence!<br>
+      This AI-powered search engine is designed for the Amsterdam Dance Event 2024.<br>
+      Enter your query below and discover the most relevant, up-to-date information drawn from official ADE sources using Retrieval-Augmented Generation (RAG).
+  </div>
 
-    <div class="arcade-window">
-      <!-- No console bar -->
-      <iframe class="arcade-screen" src="https://rag-ade.onrender.com"></iframe>
-    </div>
-  </section>
+  <div class="iframe-holder">
+    <iframe src="https://rag-ade.onrender.com"></iframe>
+  </div>
 
 </body>
 </html>
