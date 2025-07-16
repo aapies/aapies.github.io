@@ -33,13 +33,12 @@
     }
 
     .split-left {
-      justify-content: center; /* vertical center */
-      align-items: center;     /* horizontal center */
+      justify-content: center;
+      align-items: center;
       background: #000;
     }
 
     .adi-title {
-      /* Vertical block title */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -73,7 +72,7 @@
 
     .split-right {
       justify-content: center; /* vertical centering for content box */
-      align-items: center;     /* horizontal centering for inner box */
+      align-items: flex-start; /* align to left of right half */
       background: #000;
       position: relative;
     }
@@ -81,9 +80,10 @@
     .right-content {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start; /* left-align all contents */
       width: 90%;
       max-width: 540px;
+      margin-left: 5vw; /* move content further left in right half */
     }
 
     h1 {
@@ -136,7 +136,7 @@
       .split-left, .split-right { width: 100vw; height: 50vh; }
       .split-left { justify-content: flex-end; padding-bottom: 1em;}
       .split-right { justify-content: flex-start; padding-top: 1.7em;}
-      .right-content { max-width: 98%; }
+      .right-content { max-width: 98%; margin-left: 0; }
       .iframe-holder { max-width: 99%; }
       iframe { min-height: 180px; height: 180px;}
       .adi-title { font-size: 1.15rem;}
@@ -166,8 +166,7 @@
         <h1>AI search engine for ADE 2024 (RAG)</h1>
         <div class="intro">
           Welcome to Amsterdam Dance Intelligence!<br>
-          This AI-powered search engine is designed for the Amsterdam Dance Event 2024.<br>
-          Enter your query below and discover the most relevant, up-to-date information drawn from official ADE sources using Retrieval-Augmented Generation (RAG).
+          This AI-powered search engine is designed for the Amsterdam Dance Event 2024.
         </div>
         <div class="iframe-holder">
           <iframe src="https://rag-ade.onrender.com"></iframe>
