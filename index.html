@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>👾 SPACE RAG INVADERS 👾</title>
+  <title>Amsterdam Dance Intelligence</title>
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,154 +12,81 @@
       background-color: #000;
       color: #fff;
       letter-spacing: 1.5px;
-      text-shadow: 0 0 5px #39ff14, 0 0 2px #fff;
+      text-shadow: 0 0 2px #fff4;
+      min-height: 100vh;
     }
 
-    header {
-      background: linear-gradient(90deg, #39ff14 0%, #00ffc3 100%);
-      color: #000;
+    .block-title {
       text-align: center;
-      padding: 1.5rem 0 1rem;
-      border-bottom: 4px solid #fff;
-      text-shadow: 0 0 10px #fff, 0 0 6px #39ff14;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      margin: 0;
-      letter-spacing: 5px;
-      font-family: inherit;
+      margin: 2.5rem 0 1.8rem 0;
+      font-size: 2.7rem;
+      line-height: 1.05;
+      letter-spacing: 3px;
+      font-family: 'Share Tech Mono', monospace;
       font-weight: bold;
       text-transform: uppercase;
-      text-shadow: 0 0 15px #00ffae, 0 0 8px #39ff14;
+      user-select: none;
+    }
+    .block-title .yellow {
+      color: #ffc800;
+      text-shadow: 0 0 6px #ffc80055, 0 0 2px #fff;
+      /* Optional: blocky neon effect */
+    }
+    .block-title .white {
+      color: #fff;
+      text-shadow: 0 0 8px #fff8, 0 0 2px #ffc80044;
     }
 
     section {
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 2.2rem 1.2rem 2rem;
       max-width: 900px;
-      margin: 2rem auto;
-      border: 2px solid #39ff14;
-      border-radius: 8px;
-      box-shadow: 0 0 24px #39ff1450, 0 0 12px #fff2;
-      background: #111c;
+      margin: 0 auto 1.5rem auto;
+      border: 2.5px solid #ffc800;
+      border-radius: 12px;
+      box-shadow: 0 0 34px #ffc80030, 0 0 9px #fff1;
+      background: #12120c;
       position: relative;
     }
 
-    section:before,
-    section:after {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 10px; right: 10px;
-      height: 4px;
-      background: linear-gradient(90deg, #39ff14 50%, #fff 100%);
-      border-radius: 50%;
-    }
-    section:before {top: -8px;}
-    section:after {bottom: -8px;}
-
     h2 {
-      color: #39ff14;
+      color: #ffc800;
       text-transform: uppercase;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       margin-top: 0;
       letter-spacing: 3px;
-      margin-bottom: 0.4rem;
-      text-shadow: 0 0 4px #39ff1477, 0 0 2px #fff;
+      margin-bottom: 0.9rem;
+      text-shadow: 0 0 6px #ffc80077, 0 0 2px #fff;
     }
 
     p {
       font-size: 1.1rem;
       margin-bottom: 1.3rem;
-      opacity: 0.92;
+      opacity: 0.94;
     }
 
-    .status-bar {
-      background: #222;
-      border: 2px dashed #39ff14;
-      color: #39ff14;
-      padding: 0.6rem 1rem;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-      text-shadow: 0 0 4px #39ff14;
-    }
-
-    /* Arcade Window Style */
     .arcade-window {
-      background: #101618;
-      border: 4px solid #39ff14;
+      background: #12120c;
+      border: 4px solid #ffc800;
       border-radius: 18px 18px 24px 24px/16px 16px 28px 28px;
       box-shadow:
-        0 0 12px #39ff1470, /* neon outer */
-        0 6px 36px #000a inset, /* frame depth */
+        0 0 14px #ffc80070,
+        0 6px 36px #000a inset,
         0 0 1px #fff7;
-      margin-top: 2.2rem;
+      margin-top: 2rem;
       margin-bottom: 2rem;
       position: relative;
       overflow: hidden;
-      padding-top: 44px; /* for console-bar */
-      /* CRT scanlines effect: */
+      padding-top: 0;
       background-image:
         repeating-linear-gradient(
           to bottom,
-          rgba(255,255,255,0.04) 0px, 
-          rgba(255,255,255,0.04) 2px,
+          rgba(255,255,0,0.05) 0px, 
+          rgba(255,255,0,0.025) 2px,
           transparent 2px, 
           transparent 8px
         );
     }
-
-    /* Arcade top console bar */
-    .arcade-console-bar {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 44px;
-      background: linear-gradient(90deg, #191919 60%, #303030 100%);
-      border-bottom: 2px solid #00ffae77;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      z-index: 10;
-    }
-    .arcade-led {
-      width: 14px; height: 14px;
-      border-radius: 50%;
-      margin-right: 10px;
-      background: radial-gradient(ellipse at 50% 40%, #39ff14 80%, #005304 100%);
-      box-shadow: 0 0 10px #39ff14aa, 0 0 3px #fff inset;
-      animation: led-blink 1.5s infinite;
-    }
-    .arcade-led.off {
-      background: #222;
-      box-shadow: 0 0 2px #fff4 inset;
-      animation: none;
-    }
-    .arcade-console-bar span {
-      font-size: 1rem;
-      font-weight: bold;
-      color: #39ff14;
-      letter-spacing: 2px;
-      margin-right: 24px;
-      text-shadow: 0 0 2px #fff, 0 0 6px #39ff14bb;
-      opacity: 0.86;
-    }
-    .arcade-console-bar .right-bar {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      font-size: 0.95rem;
-      opacity: 0.80;
-      letter-spacing: 1px;
-    }
-    @keyframes led-blink {
-      0% {filter: brightness(1);}
-      80% {filter: brightness(1);}
-      90% {filter: brightness(0.5);}
-      100% {filter: brightness(1);}
-    }
+    /* Remove console bar */
 
     .arcade-screen {
       margin: 0;
@@ -170,13 +97,13 @@
       background: #020;
       background: repeating-linear-gradient(
         to bottom,
-        rgba(0,0,0,0.07) 0 2px,
+        rgba(255, 255, 0, 0.07) 0 2px,
         transparent 2px 12px
       );
       box-shadow:
-        0 0 30px #39ff1433 inset,
+        0 0 30px #ffc80033 inset,
         0 0 50px #fff1 inset;
-      filter: saturate(0.85) contrast(1.15) brightness(1.1);
+      filter: saturate(0.95) contrast(1.18) brightness(0.98);
       position: relative;
       z-index: 1;
       display: block;
@@ -185,36 +112,28 @@
     @media (max-width: 768px) {
       section { padding: 1rem; }
       .arcade-screen { height: 400px; }
+      .block-title { font-size: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>👾 SPACE RAG INVADERS 👾</h1>
-  </header>
+  <div class="block-title">
+    <span class="yellow">A</span><span class="white">msterdam</span><br>
+    <span class="yellow">D</span><span class="white">ance</span><br>
+    <span class="yellow">I</span><span class="white">ntelligence</span>
+  </div>
 
   <section>
-    <div class="status-bar">
-      <span>SCORE: <span style="color:#fff;">000000</span></span>
-      <span>LIVES: <span style="color:#fff;">3</span></span>
-      <span>LEVEL: <span style="color:#fff;">AI</span></span>
-    </div>
     <h2>RAG Demo Console</h2>
     <p>
-      💫 <b>Mission:</b> Try out my <b>Retrieval-Augmented Generation</b> AI!<br>
-      It's live on Render.<br><br>
-      <span style="letter-spacing:2px; color:#39ff14;">INSERT COIN TO START</span>
+      <b>Mission:</b> Try out my Retrieval-Augmented Generation AI!<br>
+      It's live on Render.<br>
+      <span style="letter-spacing:2px; color:#ffc800;">INSERT COIN TO START</span>
     </p>
 
     <div class="arcade-window">
-      <div class="arcade-console-bar">
-        <div class="arcade-led"></div>
-        <span>POWER</span>
-        <div class="arcade-led off"></div>
-        <span>COIN</span>
-        <div class="right-bar">PLAYER 1</div>
-      </div>
+      <!-- No console bar -->
       <iframe class="arcade-screen" src="https://rag-ade.onrender.com"></iframe>
     </div>
   </section>
