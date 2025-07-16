@@ -6,22 +6,44 @@
   <title>Amsterdam Dance Intelligence</title>
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
+      width: 100vw;
+      height: 100vh;
       margin: 0;
       padding: 0;
-      font-family: 'Share Tech Mono', monospace;
       background: #000;
       color: #fff;
-      min-height: 100vh;
+      font-family: 'Share Tech Mono', monospace;
       letter-spacing: 1.5px;
+      min-height: 100vh;
+      overflow: hidden;
     }
-    /* Space invader vertical title */
+
+    .split-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .split-left, .split-right {
+      width: 50vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .split-left {
+      justify-content: center; /* vertical center */
+      align-items: center;     /* horizontal center */
+      background: #000;
+    }
+
     .adi-title {
+      /* Vertical block title */
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 48px 0 18px 0;
-      font-size: 2.6rem;
+      font-size: 2.7rem;
       line-height: 1.1;
       font-family: inherit;
       text-transform: uppercase;
@@ -49,89 +71,109 @@
       text-shadow: 0 0 7px #fff8, 0 0 2px #ffff0440;
     }
 
-    .content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 2%;
+    .split-right {
+      justify-content: center; /* vertical centering for content box */
+      align-items: center;     /* horizontal centering for inner box */
+      background: #000;
+      position: relative;
+    }
+
+    .right-content {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
+      width: 90%;
+      max-width: 540px;
     }
+
     h1 {
       color: #ffff04;
       text-align: left;
-      font-size: 1.4rem;
+      font-size: 1.37rem;
       letter-spacing: 2px;
-      margin-bottom: 0.8em;
-      margin-top: 0;
+      margin: 0 0 0.7em 0;
+      width: 100%;
       text-shadow: 0 0 6px #ffff048a;
     }
     .intro {
       text-align: left;
+      width: 100%;
       color: #fff;
-      font-size: 1.14rem;
-      max-width: 600px;
-      margin-bottom: 2.1em;
-      opacity: 0.92;
+      font-size: 1.12rem;
+      margin-bottom: 1.8em;
+      opacity: 0.96;
     }
 
     .iframe-holder {
       width: 100%;
-      max-width: 850px;
-      border-radius: 14px;
+      max-width: 510px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 0 26px #ffff0430, 0 0 2px #ffff04c0;
-      border: 2.5px solid #ffff04;
+      box-shadow: 0 0 26px #ffff041a, 0 0 2px #ffff04b0;
+      border: 2px solid #ffff04;
       background: #0a0a0a;
       transition: box-shadow 0.35s;
-      margin-bottom: 48px;
     }
     .iframe-holder:hover {
-      box-shadow: 0 0 36px #ffff04ad, 0 0 12px #fff2;
+      box-shadow: 0 0 36px #ffff04bb, 0 0 12px #fff2;
     }
     iframe {
       width: 100%;
-      height: 600px;
+      min-height: 300px;
+      height: 295px;
       border: none;
       background: #000;
       display: block;
     }
-    @media (max-width: 768px) {
-      .adi-title { font-size: 1.6rem;}
-      .adi-table .left, .adi-table .right { font-size: 1.2rem;}
-      .iframe-holder { width: 99%; border-radius: 8px;}
-      iframe { height: 350px; }
-      .content { padding: 0 1%; }
+    @media (max-width: 950px) {
+      .adi-title { font-size: 1.8rem;}
+      .adi-table .left, .adi-table .right { font-size: 1.15rem;}
+      .iframe-holder {max-width: 99%; border-radius: 12px;}
+      .right-content, .intro { font-size: 1rem;}
+    }
+    @media (max-width: 700px) {
+      .split-container { flex-direction: column; }
+      .split-left, .split-right { width: 100vw; height: 50vh; }
+      .split-left { justify-content: flex-end; padding-bottom: 1em;}
+      .split-right { justify-content: flex-start; padding-top: 1.7em;}
+      .right-content { max-width: 98%; }
+      .iframe-holder { max-width: 99%; }
+      iframe { min-height: 180px; height: 180px;}
+      .adi-title { font-size: 1.15rem;}
+      .adi-table .left, .adi-table .right { font-size: 0.9rem;}
     }
   </style>
 </head>
 <body>
-
-  <div class="adi-title">
-    <table class="adi-table">
-      <tr>
-        <td class="left">A</td><td class="right">msterdam</td>
-      </tr>
-      <tr>
-        <td class="left">D</td><td class="right">ance</td>
-      </tr>
-      <tr>
-        <td class="left">I</td><td class="right">ntelligence</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="content">
-    <h1>AI search engine for ADE 2024 (RAG)</h1>
-    <div class="intro">
-      Welcome to Amsterdam Dance Intelligence!<br>
-      This AI-powered search engine is designed for the Amsterdam Dance Event 2024.<br>
-      Enter your query below and discover the most relevant, up-to-date information drawn from official ADE sources using Retrieval-Augmented Generation (RAG).
+  <div class="split-container">
+    <div class="split-left">
+      <div class="adi-title">
+        <table class="adi-table">
+          <tr>
+            <td class="left">A</td><td class="right">msterdam</td>
+          </tr>
+          <tr>
+            <td class="left">D</td><td class="right">ance</td>
+          </tr>
+          <tr>
+            <td class="left">I</td><td class="right">ntelligence</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <div class="iframe-holder">
-      <iframe src="https://rag-ade.onrender.com"></iframe>
+    <div class="split-right">
+      <div class="right-content">
+        <h1>AI search engine for ADE 2024 (RAG)</h1>
+        <div class="intro">
+          Welcome to Amsterdam Dance Intelligence!<br>
+          This AI-powered search engine is designed for the Amsterdam Dance Event 2024.<br>
+          Enter your query below and discover the most relevant, up-to-date information drawn from official ADE sources using Retrieval-Augmented Generation (RAG).
+        </div>
+        <div class="iframe-holder">
+          <iframe src="https://rag-ade.onrender.com"></iframe>
+        </div>
+      </div>
     </div>
   </div>
-
 </body>
 </html>
