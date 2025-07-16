@@ -1,16 +1,63 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My AI Projects</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
 
-<iframe 
-  src="https://rag-ade.onrender.com" 
-  width="100%" 
-  height="800px" 
-  style="border: none;">
-</iframe>
+    header {
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      iframe {
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to My AI Projects</h1>
+  </header>
+
+  <section>
+    <h2>🎯 RAG Demo</h2>
+    <p>Try out my Retrieval-Augmented Generation app below. It's hosted on Render and integrated right into this site.</p>
+
+    <iframe src="https://rag-ade.onrender.com"></iframe>
+  </section>
 
 </body>
 </html>
-
