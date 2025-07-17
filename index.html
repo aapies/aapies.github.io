@@ -7,170 +7,113 @@
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     html, body {
-      width: 100vw;
-      height: 100vh;
+      height: 100%;
       margin: 0;
       padding: 0;
-      background: #000;
-      color: #fff;
+      background: #d9d9d9;
+      color: #111;
       font-family: 'Share Tech Mono', monospace;
-      letter-spacing: 1.5px;
-      min-height: 100vh;
-      overflow: hidden;
     }
-
-    .split-container {
+    .main-container {
       display: flex;
+      flex-direction: row;
       height: 100vh;
       width: 100vw;
+      box-sizing: border-box;
     }
-
-    .split-left, .split-right {
-      width: 50vw;
-      height: 100vh;
+    .left-panel {
+      width: 33.333%;
+      min-width: 240px;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 4vw 2vw 2vw 5vw; /* main spacing for left panel */
+      box-sizing: border-box;
     }
-
-    .split-left {
-      justify-content: center;
-      align-items: center;
-      background: #000;
-    }
-
     .adi-title {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 2.7rem;
-      line-height: 1.1;
+      font-size: 2.8rem;
       font-family: inherit;
-      text-transform: uppercase;
-      user-select: none;
-    }
-    .adi-table {
-      border-spacing: 0;
-      line-height: 1.1;
-    }
-    .adi-table td {
-      padding: 0 0.25em;
-      font-size: 2.4rem;
-      font-family: inherit;
-    }
-    .adi-table .left {
-      color: #ffff04;
       font-weight: bold;
-      padding-right: 0.1em;
-      text-shadow: 0 0 8px #ffff04cc, 0 0 2px #fff2;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.4em;
+      color: #ffe600;
+      -webkit-text-stroke: 1px #000; /* For a little 'pop' */
     }
-    .adi-table .right {
-      color: #fff;
-      font-weight: normal;
-      padding-left: 0.05em;
-      text-shadow: 0 0 7px #fff8, 0 0 2px #ffff0440;
+    .adi-title .rest {
+      color: #111;
+      -webkit-text-stroke: 0;  /* Remove stroke for black */
+      font-weight: 400;
     }
-
-    .split-right {
-      justify-content: center; /* vertical centering for content box */
-      align-items: flex-start; /* align to left of right half */
-      background: #000;
-      position: relative;
+    .intro-text {
+      color: #000;
+      font-size: 1.13rem;
+      margin-top: 0.5em;
+      line-height: 1.6;
+      max-width: 420px;
     }
-
-    .right-content {
+    .right-panel {
+      width: 66.667%;
+      min-width: 340px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* left-align all contents */
-      width: 90%;
-      max-width: 540px;
-      margin-left: -5vw; /* move content further left in right half */
+      justify-content: center;
+      align-items: flex-end;
+      padding: 3vh 4vw 3vh 2vw; /* space top/bottom and right/left */
+      box-sizing: border-box;
     }
-
-    h1 {
-      color: #ffff04;
-      text-align: left;
-      font-size: 1.37rem;
-      letter-spacing: 2px;
-      margin: 0 0 0.7em 0;
+    .iframe-window {
       width: 100%;
-      text-shadow: 0 0 6px #ffff048a;
-    }
-    .intro {
-      text-align: left;
-      width: 100%;
-      color: #fff;
-      font-size: 1.12rem;
-      margin-bottom: 1.8em;
-      opacity: 0.96;
-    }
-
-    .iframe-holder {
-      width: 100%;
-      max-width: 510px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 26px #ffff041a, 0 0 2px #ffff04b0;
-      border: 2px solid #ffff04;
-      background: #0a0a0a;
-      transition: box-shadow 0.35s;
-    }
-    .iframe-holder:hover {
-      box-shadow: 0 0 36px #ffff04bb, 0 0 12px #fff2;
-    }
-    iframe {
-      width: 100%;
+      height: 94%; /* nearly as tall as right-panel, adjust as needed */
       min-height: 300px;
-      height: 295px;
+      min-width: 290px;
+      max-width: 1000px;
+      box-shadow: 0 6px 24px #bbb7, 0 1px 3px #fff9;
+      border-radius: 18px;
+      border: 2px solid #222;
+      background: #fff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .iframe-window iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      background: #000;
-      display: block;
+      background: #fff;
     }
     @media (max-width: 950px) {
-      .adi-title { font-size: 1.8rem;}
-      .adi-table .left, .adi-table .right { font-size: 1.15rem;}
-      .iframe-holder {max-width: 99%; border-radius: 12px;}
-      .right-content, .intro { font-size: 1rem;}
+      .adi-title { font-size: 1.4rem;}
+      .right-panel { padding: 2vh 2vw;}
+      .iframe-window { min-width: 160px; }
     }
     @media (max-width: 700px) {
-      .split-container { flex-direction: column; }
-      .split-left, .split-right { width: 100vw; height: 50vh; }
-      .split-left { justify-content: flex-end; padding-bottom: 1em;}
-      .split-right { justify-content: flex-start; padding-top: 1.7em;}
-      .right-content { max-width: 98%; margin-left: 0; }
-      .iframe-holder { max-width: 99%; }
-      iframe { min-height: 180px; height: 180px;}
-      .adi-title { font-size: 1.15rem;}
-      .adi-table .left, .adi-table .right { font-size: 0.9rem;}
+      .main-container { flex-direction: column; }
+      .left-panel, .right-panel { width: 100vw; min-width: 0; }
+      .left-panel { padding: 6vw 5vw 2vw 5vw; align-items: flex-start;}
+      .right-panel { align-items: center; padding: 2vw;}
+      .iframe-window { width: 100%; height: 320px; min-height: 145px;}
     }
   </style>
 </head>
 <body>
-  <div class="split-container">
-    <div class="split-left">
+  <div class="main-container">
+    <div class="left-panel">
       <div class="adi-title">
-        <table class="adi-table">
-          <tr>
-            <td class="left">A</td><td class="right">msterdam</td>
-          </tr>
-          <tr>
-            <td class="left">D</td><td class="right">ance</td>
-          </tr>
-          <tr>
-            <td class="left">I</td><td class="right">ntelligence</td>
-          </tr>
-        </table>
+        <span style="color:#ffe600;">A</span><span class="rest">msterdam</span><br>
+        <span style="color:#ffe600;">D</span><span class="rest">ance</span><br>
+        <span style="color:#ffe600;">I</span><span class="rest">ntelligence</span>
+      </div>
+      <div class="intro-text">
+        Welcome to Amsterdam Dance Intelligence!<br>
+        This AI-powered search engine is designed for the Amsterdam Dance Event 2024.
+        Enter your query on the right to discover the most relevant, up-to-date information using Retrieval-Augmented Generation (RAG).
       </div>
     </div>
-    <div class="split-right">
-      <div class="right-content">
-        <h1>AI search engine for ADE 2024 (RAG)</h1>
-        <div class="intro">
-          Welcome to Amsterdam Dance Intelligence!<br>
-          This AI-powered search engine is designed for the Amsterdam Dance Event 2024.
-        </div>
-        <div class="iframe-holder">
-          <iframe src="https://rag-ade.onrender.com"></iframe>
-        </div>
+    <div class="right-panel">
+      <div class="iframe-window">
+        <iframe src="https://rag-ade.onrender.com"></iframe>
       </div>
     </div>
   </div>
