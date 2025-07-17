@@ -4,127 +4,216 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amsterdam Dance Intelligence</title>
-  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono:400,700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #ffe600;
+      --accent: #222;
+      --bg: #f6f6f6;
+      --panel-bg: #fff;
+      --border: #e0e0e0;
+      --shadow: 0 6px 24px #bbb7, 0 1px 3px #fff9;
+    }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      background: #d9d9d9;
-      color: #111;
+      background: var(--bg);
+      color: var(--accent);
       font-family: 'Share Tech Mono', monospace;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+    }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 64px;
+      padding: 0 2rem 0 0.8rem;
+      background: transparent;
+      box-sizing: border-box;
+      margin-bottom: .5rem;
+    }
+    .logo-link {
+      font-size: 1.44rem;
+      text-decoration: none;
+      color: var(--accent);
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: bold;
+      letter-spacing: 0.09em;
+      display: flex;
+      align-items: center;
+      border-radius: 10px;
+      transition: background 0.13s;
+      padding: 0.32em 0.7em;
+    }
+    .logo-link:hover, .logo-link:focus {
+      background: #ffe60055;
+      color: #000;
+      outline: none;
     }
     .main-container {
       display: flex;
       flex-direction: row;
-      height: 100vh;
-      width: 100vw;
+      align-items: flex-start;
+      height: calc(100vh - 64px - .5rem); /* minus top-bar and margin */
       box-sizing: border-box;
+      gap: 0.4vw;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .left-panel {
-      width: 33.333%;
-      min-width: 240px;
+      flex: 1 1 370px;
+      max-width: 440px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center; /* vertical center */
       align-items: flex-start;
-      padding: 4vw 2vw 2vw 5vw; /* main spacing for left panel */
+      padding: 2.6vw 2.2vw 1vw 3vw;
       box-sizing: border-box;
+      background: transparent;
     }
     .adi-title {
-      font-size: 2.8rem;
-      font-family: inherit;
-      font-weight: bold;
+      font-size: 2.18rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      margin-bottom: 0.4em;
-      color: #ffe600;
-      -webkit-text-stroke: 1px #000; /* For a little 'pop' */
+      margin-bottom: 0.28em;
+      line-height: 1.07;
+      font-family: inherit;
+      color: var(--accent);
+    }
+    .adi-title .init {
+      color: var(--primary);
+      font-weight: 700;
     }
     .adi-title .rest {
-      color: #111;
-      -webkit-text-stroke: 0;  /* Remove stroke for black */
+      color: var(--accent);
       font-weight: 400;
+      letter-spacing: 0.065em;
     }
     .intro-text {
-      color: #000;
-      font-size: 1.13rem;
-      margin-top: 0.5em;
-      line-height: 1.6;
-      max-width: 420px;
+      color: #222;
+      font-size: 1.07rem;
+      margin: 0.7em 0 0 0;
+      line-height: 1.63;
+      max-width: 98%;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .intro-text strong {
+      display: inline-block;
+      margin: 0.6em 0 0.18em 0;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+    .feature-list {
+      margin: 0.3em 0 0.8em 1.3em;
+      padding-left: 0.6em;
+      font-size: 1em;
+    }
+    .feature-list li {
+      margin: 0.25em 0;
+      line-height: 1.38;
+      list-style: square;
+      color: #555;
     }
     .right-panel {
-      width: 66.667%;
-      min-width: 340px;
+      flex: 2 1 570px;
+      min-width: 320px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-end;
-      padding: 3vh 4vw 3vh 2vw; /* space top/bottom and right/left */
+      align-items: stretch;
+      padding: 1vw 0vw 0.5vw 0vw;
       box-sizing: border-box;
+      max-width: 1100px;
+    }
+    .info-line {
+      font-size: 0.93rem;
+      margin-bottom: 0.7em;
+      color: #888;
+      letter-spacing: 0.02em;
+      padding-left: 0.1em;
+      font-style: italic;
+      line-height: 1.2;
     }
     .iframe-window {
       width: 100%;
-      height: 94%; /* nearly as tall as right-panel, adjust as needed */
-      min-height: 300px;
-      min-width: 290px;
-      max-width: 1000px;
-      box-shadow: 0 6px 24px #bbb7, 0 1px 3px #fff9;
-      border-radius: 18px;
-      border: 2px solid #222;
-      background: #fff;
+      height: calc(100vh - 64px - 5.5rem - 48px);
+      min-height: 220px;
+      max-width: none;
+      box-shadow: var(--shadow);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      background: var(--panel-bg);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      align-self: flex-start;
+      transition: box-shadow .16s;
     }
     .iframe-window iframe {
       width: 100%;
       height: 100%;
       border: none;
-      background: #fff;
+      background: var(--panel-bg);
     }
-    @media (max-width: 950px) {
-      .adi-title { font-size: 1.4rem;}
-      .right-panel { padding: 2vh 2vw;}
-      .iframe-window { min-width: 160px; }
+    @media (max-width: 1200px) {
+      .main-container { max-width: 98vw; }
+      .left-panel { max-width: 340px;}
+      .adi-title { font-size: 1.6rem;}
+      .right-panel { max-width: 100vw;}
+      .iframe-window { max-width: 480px;}
     }
-    @media (max-width: 700px) {
-      .main-container { flex-direction: column; }
-      .left-panel, .right-panel { width: 100vw; min-width: 0; }
-      .left-panel { padding: 6vw 5vw 2vw 5vw; align-items: flex-start;}
-      .right-panel { align-items: center; padding: 2vw;}
-      .iframe-window { width: 100%; height: 320px; min-height: 145px;}
+    @media (max-width: 900px) {
+      .main-container { flex-direction: column; height: auto; }
+      .left-panel, .right-panel { max-width: 100vw; width: 100vw; }
+      .right-panel { padding: 2vw 2vw; }
+      .iframe-window { margin: 0 auto; width: 100%; min-height: 200px; }
+    }
+    @media (max-width: 650px) {
+      .adi-title { font-size: 1.19rem;}
+      .top-bar { height: 48px; margin-bottom: 0.5rem; }
+      .main-container { gap: 0.08em;}
+      .left-panel { padding: 4vw 4vw 2vw 5vw;}
+      .iframe-window { height: 220px; }
     }
   </style>
 </head>
 <body>
+  <div class="top-bar">
+    <a href="/" class="logo-link" title="Go to homepage">
+      A.apie&nbsp;<span aria-label="monkey" role="img">🐒</span>
+    </a>
+  </div>
   <div class="main-container">
     <div class="left-panel">
       <div class="adi-title">
-        <span style="color:#ffe600;">A</span><span class="rest">msterdam</span><br>
-        <span style="color:#ffe600;">D</span><span class="rest">ance</span><br>
-        <span style="color:#ffe600;">I</span><span class="rest">ntelligence</span>
+        <span class="init">A</span><span class="rest">msterdam</span><br>
+        <span class="init">D</span><span class="rest">ance</span><br>
+        <span class="init">I</span><span class="rest">ntelligence</span>
       </div>
       <div class="intro-text">
-        This is a search engine which uses AI to find events for the Amsterdam Dance Event (ADE) in 2024.<br><br>
-
-  <b>What it can do:</b>
-  <ul style="margin-top: 0.4em;">
-    <li>Find events by artist name, genre, date, label, price or venue</li>
-    <li>Find events with music <i>similar</i> to a specific DJ.</li>
-    <li>Search for vibe (e.g. something melanchonic)</li>
-    <li>Search for random activities (e.g. painting, running)</li>
-  </ul>
-
-  <b>What it can't do (yet):</b>
-  <ul style="margin-top: 0.4em;">
-    <li>Set up a schedule for ADE</li>
-    <li>Handle requests which are not search related</li>
-    <li>Complex queries</li>
-  </ul>
+        Search engine powered by AI for Amsterdam Dance Event (ADE) 2024.<br>
+        <strong>Features:</strong>
+        <ul class="feature-list">
+          <li>Find events by artist, genre, date, label, price, or venue</li>
+          <li>Discover music <i>similar</i> to a specific DJ</li>
+          <li>Search by vibe (e.g.&nbsp;"melancholic")</li>
+          <li>Find random activities (e.g.&nbsp;"painting", "running")</li>
+        </ul>
+        <strong>Limitations:</strong>
+        <ul class="feature-list">
+          <li>Can't set up an ADE schedule (yet)</li>
+          <li>Non-search requests are not supported</li>
+        </ul>
       </div>
     </div>
     <div class="right-panel">
+      <span class="info-line">Note: The app may take 1–2 minutes to load the first time.</span>
       <div class="iframe-window">
         <iframe src="https://rag-ade.onrender.com"></iframe>
       </div>
