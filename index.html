@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Amsterdam Dance Intelligence</title>
-  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono:400,700&display=swap" rel="stylesheet" />
   <style>
     :root {
       --primary: #ffe600;
@@ -34,7 +34,7 @@
       padding: 0 2rem 0 0.8rem;
       background: transparent;
       box-sizing: border-box;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
     .logo-link {
       font-size: 1.44rem;
@@ -58,7 +58,7 @@
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      height: calc(100vh - 64px - .5rem); /* minus top-bar and margin */
+      height: calc(100vh - 64px - 0.5rem);
       box-sizing: border-box;
       gap: 0.4vw;
       max-width: 1400px;
@@ -69,13 +69,19 @@
       max-width: 440px;
       display: flex;
       flex-direction: column;
-      justify-content: center; /* vertical center */
-      align-items: flex-start;
-      padding: 2.6vw 2.2vw 1vw 3vw;
+      justify-content: flex-start;
+      align-items: center; /* center horizontally */
+      padding: 1.2vw 2.2vw 1vw 3vw;
       box-sizing: border-box;
       background: transparent;
+      text-align: left; /* keep text left aligned */
     }
     .adi-title {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0; /* no gap */
       font-size: 2.18rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -84,30 +90,39 @@
       line-height: 1.07;
       font-family: inherit;
       color: var(--accent);
+      user-select: none;
     }
-    .adi-title .init {
+    .adi-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end; /* letters right-aligned */
+      margin-right: 0; /* no margin */
       color: var(--primary);
       font-weight: 700;
+      line-height: 1;
     }
-    .adi-title .rest {
+    .adi-words {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* words left-aligned */
       color: var(--accent);
       font-weight: 400;
       letter-spacing: 0.065em;
+      line-height: 1;
+    }
+    .adi-column div, .adi-words div {
+      line-height: 1;
     }
     .intro-text {
-      color: #222;
-      font-size: 1.07rem;
-      margin: 0.7em 0 0 0;
-      line-height: 1.63;
-      max-width: 98%;
-      font-weight: 400;
-      letter-spacing: 0.01em;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin: 0.6em 0 0 0;
+      max-width: 440px;
+      user-select: none;
     }
     .intro-text strong {
-      display: inline-block;
-      margin: 0.6em 0 0.18em 0;
-      letter-spacing: 0.04em;
       font-weight: 700;
+      letter-spacing: 0.04em;
     }
     .feature-list {
       margin: 0.3em 0 0.8em 1.3em;
@@ -127,9 +142,10 @@
       flex-direction: column;
       justify-content: center;
       align-items: stretch;
-      padding: 1vw 0vw 0.5vw 0vw;
+      padding: 1vw 0 0.5vw 0;
       box-sizing: border-box;
       max-width: 1100px;
+      order: 0; /* default order */
     }
     .info-line {
       font-size: 0.93rem;
@@ -153,7 +169,7 @@
       display: flex;
       flex-direction: column;
       align-self: flex-start;
-      transition: box-shadow .16s;
+      transition: box-shadow 0.16s;
     }
     .iframe-window iframe {
       width: 100%;
@@ -161,26 +177,55 @@
       border: none;
       background: var(--panel-bg);
     }
-    @media (max-width: 1200px) {
-      .main-container { max-width: 98vw; }
-      .left-panel { max-width: 340px;}
-      .adi-title { font-size: 1.6rem;}
-      .right-panel { max-width: 100vw;}
-      .iframe-window { max-width: 480px;}
-    }
+
+    /* Mobile styles */
     @media (max-width: 900px) {
-      .main-container { flex-direction: column; height: auto; }
-      .left-panel, .right-panel { max-width: 100vw; width: 100vw; }
-      .right-panel { padding: 2vw 2vw; }
-      .iframe-window { margin: 0 auto; width: 100%; min-height: 200px; }
+      .main-container {
+        flex-direction: column;
+        height: auto;
+      }
+      .right-panel {
+        order: 1; /* iframe first */
+        max-width: 100vw;
+        width: 100vw;
+        padding: 2vw;
+      }
+      .left-panel {
+        order: 2; /* text second */
+        max-width: 100vw;
+        width: 100vw;
+        padding: 1.2vw 2.2vw 1vw 3vw;
+        align-items: center;
+        text-align: center;
+      }
+      .adi-title {
+        justify-content: center;
+      }
     }
     @media (max-width: 650px) {
-      .adi-title { font-size: 1.19rem;}
-      .top-bar { height: 48px; margin-bottom: 0.5rem; }
-      .main-container { gap: 0.08em;}
-      .left-panel { padding: 4vw 4vw 2vw 5vw;}
-      .iframe-window { height: 220px; }
+      .adi-title {
+        font-size: 1.19rem;
+      }
+      .top-bar {
+        height: 48px;
+        margin-bottom: 0.5rem;
+      }
+      .main-container {
+        gap: 0.08em;
+      }
+      .left-panel {
+        padding: 4vw 4vw 2vw 5vw;
+      }
+      .iframe-window {
+        height: 220px;
+      }
     }
+    @media (max-width: 650px) {
+  .iframe-window {
+    height: calc(100vh - 48px); /* taller iframe for mobile */
+    min-height: 400px;
+  }
+}
   </style>
 </head>
 <body>
@@ -191,25 +236,29 @@
   </div>
   <div class="main-container">
     <div class="left-panel">
-      <div class="adi-title">
-        <span class="init">A</span><span class="rest">msterdam</span><br>
-        <span class="init">D</span><span class="rest">ance</span><br>
-        <span class="init">I</span><span class="rest">ntelligence</span>
+      <div class="adi-title" aria-label="Amsterdam Dance Intelligence">
+        <div class="adi-column" aria-hidden="true">
+          <div class="init">A</div>
+          <div class="init">D</div>
+          <div class="init">I</div>
+        </div>
+        <div class="adi-words">
+          <div class="rest">msterdam</div>
+          <div class="rest">ance</div>
+          <div class="rest">ntelligence</div>
+        </div>
       </div>
       <div class="intro-text">
-        Search engine powered by AI for Amsterdam Dance Event (ADE) 2024.<br>
-        <strong>Features:</strong>
-        <ul class="feature-list">
-          <li>Find events by artist, genre, date, label, price, or venue</li>
-          <li>Discover music <i>similar</i> to a specific DJ</li>
-          <li>Search by vibe (e.g.&nbsp;"melancholic")</li>
-          <li>Find random activities (e.g.&nbsp;"painting", "running")</li>
-        </ul>
-        <strong>Limitations:</strong>
-        <ul class="feature-list">
-          <li>Can't set up an ADE schedule (yet)</li>
-          <li>Non-search requests are not supported</li>
-        </ul>
+        This app is a <strong>Retrieval-Augmented Generation (RAG)</strong> — think of it as a search engine powered by AI.<br>
+        It was built to explore events from the <strong>Amsterdam Dance Event (ADE)</strong>, which features around <strong>1,000 events</strong>.<br><br>
+
+        <strong>Retrieval:</strong><br>
+        Based on what you type, the app looks for events that match the meaning of your words — not just exact keywords.<br>
+        For example, searching for <i>"sporty events"</i> may return events related to fitness, running, and more.<br><br>
+        <strong>Augmented:</strong><br>
+        Once the best matches are found, the app gives this information to the AI.<br><br>
+        <strong>Generation:</strong><br>
+        The AI then explains the results in a helpful and human-like way.
       </div>
     </div>
     <div class="right-panel">
